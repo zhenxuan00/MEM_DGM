@@ -1,5 +1,8 @@
-Chongxuan Li, Jun Zhu and Bo Zhang, Learning to Generate with Memory (ICML16)
+Chongxuan Li, Jun Zhu and Bo Zhang, Learning to Generate with Memory (ICML16).
 Please cite this paper when using this code for your research.
+
+The scripts will be published soon.
+Some lines of code are redundent. TODO: a more clean version with same reproducibility.
 
 For questions and bug reports, please send me an e-mail at _chongxuanli1991[at]gmail.com_.
 
@@ -13,6 +16,11 @@ For questions and bug reports, please send me an e-mail at _chongxuanli1991[at]g
     - Theano (version 0.8.0)
     - Lasagne (version 0.2.dev1)
     - Parmesan (version 0.1.dev1)
+    - matplotlib
+    - networkx
+
+2. Download OCR-letters
+    - wget http://www.capsec.org/datasets/ocr_letters.h5
 
 ## Log-likelihood estimation and random generation:
 1. MNIST (set iw_samples=5 or 50 for comparision with IWAE)
@@ -34,24 +42,28 @@ For questions and bug reports, please send me an e-mail at _chongxuanli1991[at]g
     - random drop: python generate_pertubed_data_mnist.py 4 0.8 (drop ratio, a real number in range (0, 1))
     - half: python generate_pertubed_data_mnist.py 5 0 14 (integer less than 28)
 2. Test with noisy data:    
-    - VAE: python mem_dgm_mlp_analysis.py -dataset sample -has_lre 0,0,0 -n_slots 0,0,0 -lambdas 0,0,0 -has_memory 0,0,0 -analysis_mode imputation -imputation_mode half -imputation_para 14 -model_file
-    - MEM_VAE: python mem_dgm_mlp_analysis.py -dataset sample -has_lre 0,1,1 -n_slots 0,70,30 -lambdas 0,0.1,0.1 -has_memory 0,1,1 -analysis_mode imputation -imputation_mode half -imputation_para 14 -model_file 
+    - VAE: python mem_dgm_mlp_analysis.py -dataset sample -has_lre 0,0,0 -n_slots 0,0,0 -lambdas 0,0,0 -has_memory 0,0,0 -analysis_mode imputation -imputation_mode half -imputation_para 14 -model_file [dir/modelepoch3000]
+    - MEM_VAE: python mem_dgm_mlp_analysis.py -dataset sample -has_lre 0,1,1 -n_slots 0,70,30 -lambdas 0,0.1,0.1 -has_memory 0,1,1 -analysis_mode imputation -imputation_mode half -imputation_para 14 -model_file [dir/modelepoch3000]
 
 ## Classification
 1. Get features:
-    - VAE: python mem_dgm_mlp_analysis.py -dataset sample -has_lre 0,0,0 -n_slots 0,0,0 -lambdas 0,0,0 -has_memory 0,0,0 -analysis_mode classification -model_file
-    - MEM_VAE: python mem_dgm_mlp_analysis.py -dataset sample -has_lre 0,1,1 -n_slots 0,70,30 -lambdas 0,0.1,0.1 -has_memory 0,1,1 -analysis_mode classification -model_file
+    - VAE: python mem_dgm_mlp_analysis.py -dataset sample -has_lre 0,0,0 -n_slots 0,0,0 -lambdas 0,0,0 -has_memory 0,0,0 -analysis_mode classification -model_file [dir/modelepoch3000]
+    - MEM_VAE: python mem_dgm_mlp_analysis.py -dataset sample -has_lre 0,1,1 -n_slots 0,70,30 -lambdas 0,0.1,0.1 -has_memory 0,1,1 -analysis_mode classification -model_file [dir/modelepoch3000]
 2. Test with linear SVM    
     - python svm.py [feature_file]
+
+## Disable memory for visualization
+    # only for ours
+        THEANO_FLAGS='device=gpu0' python mem_dgm_mlp_analysis.py -dataset sample -has_lre 0,1,1 -n_slots 0,70,30 -lambdas 0,0.1,0.1 -has_memory 0,1,1 -analysis_mode visualization -model_file [dir/modelepoch3000]
 
 ## Statis_computation-mnist
 
 1. Only for our model 
-    - python mem_dgm_mlp_analysis.py -dataset sample -has_lre 0,1,1 -n_slots 0,70,30 -lambdas 0,0.1,0.1 -has_memory 0,1,1 -analysis_mode statis_computation -model_file
+    - python mem_dgm_mlp_analysis.py -dataset sample -has_lre 0,1,1 -n_slots 0,70,30 -lambdas 0,0.1,0.1 -has_memory 0,1,1 -analysis_mode statis_computation -model_file [dir/modelepoch3000]
 
 ## Visualize memory
     - Training: python mem_dgm_mlp_for_vis.py -dataset sample -has_lre 0,1,1 -n_slots 0,70,30 -lambdas 0,0.1,0.1 -has_memory 0,1,1 -iw_samples 1 -com_type plus -atten_type normalized
 
-    - Visualizing: python mem_dgm_mlp_for_vis_analysis.py -dataset sample -has_lre 0,1,1 -n_slots 0,70,30 -lambdas 0,0.1,0.1 -has_memory 0,1,1 -analysis_mode visualization_mem -com_type plus -atten_type normalized -model_file
+    - Visualizing: python mem_dgm_mlp_for_vis_analysis.py -dataset sample -has_lre 0,1,1 -n_slots 0,70,30 -lambdas 0,0.1,0.1 -has_memory 0,1,1 -analysis_mode visualization_mem -com_type plus -atten_type normalized -model_file [dir/modelepoch3000]
     
-    - Sparsity: python mem_dgm_mlp_for_vis_analysis.py -dataset sample -has_lre 0,1,1 -n_slots 0,70,30 -lambdas 0,0.1,0.1 -has_memory 0,1,1 -analysis_mode sparse_over_class -com_type plus -atten_type normalized -model_file
+    - Sparsity: python mem_dgm_mlp_for_vis_analysis.py -dataset sample -has_lre 0,1,1 -n_slots 0,70,30 -lambdas 0,0.1,0.1 -has_memory 0,1,1 -analysis_mode sparse_over_class -com_type plus -atten_type normalized -model_file [dir/modelepoch3000]
