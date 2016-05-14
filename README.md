@@ -5,7 +5,9 @@ For questions and bug reports, please send me an e-mail at _chongxuanli1991[at]g
 
 
 ## Prerequisites
+
 Some libs we used in our experiments:
+
     - Python (version 2.7)
     - Numpy
     - Scipy
@@ -44,7 +46,9 @@ Some libs we used in our experiments:
     - python svm.py [feature_file]
 
 ## Statis_computation-mnist
+
 Only for our model
+    
     - python mem_dgm_mlp_analysis.py -dataset sample -has_lre 0,1,1 -n_slots 0,70,30 -lambdas 0,0.1,0.1 -has_memory 0,1,1 -analysis_mode statis_computation -model_file
 
 ## Visualize memory
