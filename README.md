@@ -4,8 +4,8 @@ Please cite this paper when using this code for your research.
 For questions and bug reports, please send me an e-mail at _chongxuanli1991[at]gmail.com_.
 
 
-## Some libs we used in our experiments:
-
+## Prerequisites
+Some libs we used in our experiments:
     - Python (version 2.7)
     - Numpy
     - Scipy
@@ -45,7 +45,7 @@ For questions and bug reports, please send me an e-mail at _chongxuanli1991[at]g
 
 ## Statis_computation-mnist
 Only for our model
-    python mem_dgm_mlp_analysis.py -dataset sample -has_lre 0,1,1 -n_slots 0,70,30 -lambdas 0,0.1,0.1 -has_memory 0,1,1 -analysis_mode statis_computation -model_file
+    - python mem_dgm_mlp_analysis.py -dataset sample -has_lre 0,1,1 -n_slots 0,70,30 -lambdas 0,0.1,0.1 -has_memory 0,1,1 -analysis_mode statis_computation -model_file
 
 ## Visualize memory
     - Training: python mem_dgm_mlp_for_vis.py -dataset sample -has_lre 0,1,1 -n_slots 0,70,30 -lambdas 0,0.1,0.1 -has_memory 0,1,1 -iw_samples 1 -com_type plus -atten_type normalized
