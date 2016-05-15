@@ -1,4 +1,4 @@
-Chongxuan Li, Jun Zhu and Bo Zhang, Learning to Generate with Memory (ICML16).
+Chongxuan Li, Jun Zhu and Bo Zhang, [Learning to Generate with Memory](http://arxiv.org/abs/1602.07416) (ICML16).
 Please cite this paper when using this code for your research.
 
 Some lines of code are redundent. TODO: a more clean version with same reproducibility.
